@@ -56,7 +56,9 @@ data_health<-read.csv("500_Cities__Local_Data_for_Better_Health__2019_release.cs
 str(data_health)
 
 #the summary output
-![Image](src)
+![Summary_data](/Deepti1206/deepti1206.github.io/docs/images/Summary_data.png)
+
+```
 
 
 
