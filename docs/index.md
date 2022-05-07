@@ -1,6 +1,6 @@
 # Impact of City health services on Public health in the United States
 
-[PLACES](https://www.cdc.gov/places/index.html), the expansion of The 500 Cities Project, originally a project of The Center for Disease Control (CDC) showcased new approaches to generate reliable population health estimates for local areas. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
+[PLACES](https://www.cdc.gov/places/index.html), the expansion of The 500 Cities Project, is a partnership project between the Center for Disease Control (CDC) and the Robert Wood Johnson. It focusses on new approaches towards model-based analysis of health estimates for local areas across the United States. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
 
 The initiative provided the display, retrieval and exploration of health care data for the largest 500 cities at the selected city and tract level on the habits, and risk factors that have a significant impact on the health of the population. 
 
@@ -52,7 +52,12 @@ As the data may contain missing values or unnecesarry features, we will follow t
 In order to perform the data pre-processing and analysis first step is to understand about your data.
 ```
 #Loading the dataset
-data<-read.csv("500_Cities__Local_Data_for_Better_Health__2019_release.csv",header=T)
+data_health<-read.csv("500_Cities__Local_Data_for_Better_Health__2019_release.csv",header=T)
+str(data_health)
+
+#the summary output
+![Image](src)
+
 
 
 
