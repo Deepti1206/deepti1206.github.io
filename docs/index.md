@@ -1,4 +1,14 @@
-## Welcome to GitHub Pages
+## Predicting the impact of city health services on public health outcomes in the United States
+
+[PLACES](https://www.cdc.gov/places/index.html), the expansion of The 500 Cities Project, originally a project of The Center for Disease Control (CDC) showcased new approaches to generate reliable population health estimates for local areas. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
+
+The initiative provided the display, retrieval and exploration of health care data for the largest 500 cities at the selected city and tract level on the habits, and risk factors that have a significant impact on the health of the population. 
+
+The aim is to identify metrics and measures that predict the health outcomes and can help to take preventive measures against the disease. 
+
+
+
+
 
 You can use the [editor on GitHub](https://github.com/Deepti1206/deepti1206.github.io/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
