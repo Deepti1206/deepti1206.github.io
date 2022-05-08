@@ -1,4 +1,4 @@
-# Impact of City health services on Public health in the United States
+# Health Services impact on Public Health
 
 PLACES, the expansion of The 500 Cities Project, is a partnership project between the Center for Disease Control (CDC) and the Robert Wood Johnson. It focusses on new approaches towards model-based analysis of health estimates for local areas across the United States. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
 
@@ -45,7 +45,7 @@ head(data_health)
 str(data_health)
 dim(data_health)
 ```
-The partial snapshot of output of the code `str(data_health)` is given in figure below. The entire output of the code can be found here [R markdown and link]
+The snapshot of output of the code `str(data_health)` is given in figure below. The entire output of the code can be found here [R markdown and link]
 ![str data_health](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data_health).1.png)
 
 In the output, you can see that there are 810,103 observations and 24 variables (i.e 810,103 rows and 24 columns in a dataframe). The structure of each variables are given. For example, for "StateAbbr", the datatype is "chr" (character) and displays a short list of observations under the variable.
@@ -65,7 +65,7 @@ skim_without_charts(data_health)
 ![skim_2](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_2.png)
 Output code link
 
-Th output tells us the n_missing values in the given data against each variables. We need to either fill this missing values or remove it, so that our model can fit into the data. 
+The output tells us the n_missing values in the given data against each variables. We need to either fill this missing values or remove it, so that our model can fit into the data. 
 
 ```
 #Data Cleaning & Transformation
@@ -103,10 +103,8 @@ summary(data)
 Output link
 ![str data](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/summary_data.png)
 
-After carefully studying the datam we will now begin building the dataframe which will give us a summary of type
-
-*****Now after studying data, to answer our research questions ,the variables which are likely to be used for study are preventive measures and healthy behaviors where the city can have direct influence, which may then impact the health outcomes. For this, we will carry out hypothesis testing and begin by looking at preventative services which consist of a number of outcomes.
-We will also use this dataset to predict if the measures taken by cities have a significant influence on the healthy behaviors within the population. Some of the variables that will help answer this question include:\ “No leisure-time physical activity among adults aged >=18 Years” (LPA) ”Sleeping less than 7 hours among adults aged >=18 Years” (SLEEP) “Binge drinking among adults aged >=18 Years” (BINGE) ”Current smoking among adults aged >=18 Years” (CSMOKING)*****
+After carefully studying the datam we will now begin building the dataframe which will give us a summary of type. To answer our research questions ,the variables which are likely to be used for study are preventive measures and healthy behaviors where the city can have direct influence, which may then impact the health outcomes. For this, we will carry out hypothesis testing and begin by looking at preventative services which consist of a number of outcomes.
+We will also use this dataset to predict if the measures taken by cities have a significant influence on the healthy behaviors within the population. Some of the variables that will help answer this question include: “No leisure-time physical activity among adults aged >=18 Years” (LPA) ”Sleeping less than 7 hours among adults aged >=18 Years” (SLEEP) “Binge drinking among adults aged >=18 Years” (BINGE) ”Current smoking among adults aged >=18 Years” (CSMOKING)
 
 ```
 library(tidyr)
@@ -144,7 +142,7 @@ Looking at the above output, you will find that we have tried to look at disease
 
 ![skim_census](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_census_2.png)
 
- If you see, the missing value in "PAPTEST" is hig and hence we will eliminate this column from our data. We will also rename the columns for better styling guide
+If you see, the missing value in "PAPTEST" is hig and hence we will eliminate this column from our data. We will also rename the columns for better styling guide
  
  ```
 #Removing Paptest
@@ -190,7 +188,7 @@ ggplot(states, aes(x=reorder(state_abbr,population), y=population )) + geom_bar(
 ```
 ![Barplot_states](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_states.png)
 
-We have created tghe visualization of the populattion against the states. As you can see, this data is skewed considerably in favor of a few states. For a variety of reasons, including culture, legislation, and weather, we can't assume that what works in California would work in Alaska. However, 11 states had only one city investigated, while California has 83. The accuracy of my findings could therefore be affected by the client's location. This happened because the study concentrated on the country's largest cities, then added a few more to guarantee that every state was covered. With this in mind, it's understood if you're concerned about how this would apply to a tiny town.
+We have created the visualization of the populattion against the states. As you can see, this data is skewed considerably in favor of a few states. For a variety of reasons, including culture, legislation, and weather, we can't assume that what works in California would work in Alaska. However, 11 states had only one city investigated, while California has 83. The accuracy of my findings could therefore be affected by the client's location. This happened because the study concentrated on the country's largest cities, then added a few more to guarantee that every state was covered. With this in mind, it's understood if you're concerned about how this would apply to a tiny town.
 
 ## Results and findings
 
@@ -294,7 +292,7 @@ ggarrange(plot_phy, box_phy,  ncol = 2, nrow = 1)
 
 Now that we've established that cities use preventative services differently, we need to figure out why. What can the city do to encourage more people to use the services?
 
-My initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, we believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
+The initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, we believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
 WE will now create a correlation matrix followed by a heatmap. We will be looking at the use of preventative services and will be interested in any correlations with an absolute value above 0.65.
 
 ```
