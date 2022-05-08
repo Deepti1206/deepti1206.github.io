@@ -1,6 +1,6 @@
 # Impact of City health services on Public health in the United States
 
-[PLACES](https://www.cdc.gov/places/index.html), the expansion of The 500 Cities Project, is a partnership project between the Center for Disease Control (CDC) and the Robert Wood Johnson. It focusses on new approaches towards model-based analysis of health estimates for local areas across the United States. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
+PLACES, the expansion of The 500 Cities Project, is a partnership project between the Center for Disease Control (CDC) and the Robert Wood Johnson. It focusses on new approaches towards model-based analysis of health estimates for local areas across the United States. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
 
 The initiative provided the display, retrieval and exploration of health care data for the largest 500 cities at the selected city and tract level on the habits, and risk factors that have a significant impact on the health of the population. 
 
@@ -20,16 +20,13 @@ The PLACES Project took over from the 500 Cities Project in December 2020. It wa
 Individual cities and groupings of cities, as well as other stakeholders, might have used this high-quality, small-area epidemiologic data to assist create and implement effective and focused prevention programs, identify developing health problems, and establish and monitor critical health targets. 
 City planners and elected officials, for example, may have wished to utilize this information to target neighborhoods with high rates of smoking or other health-risk behaviors for successful interventions. 
 
-The data is heavily skewed in favor of a few states. We can’t assume that what works in California will work in Alaska for a variety of reasons, including culture, legislation, and weather. However, only one city was studied in 11 states, whereas California had 83. As a result, the client’s location may have an impact on the accuracy of my findings. This occurred as a result of the study’s initial focus on the country’s largest cities, followed by the addition of a few more to ensure that every state was covered. Given this, it’s natural if you’re concerned about how this would affect a small community. 
+The good thing about the dataset is that it is organized in a dataframe hence making it easier for analysis. However, the dataset is not clean i.e there are unnecessary and null values in the data set that needs to be cleaned. Hence, we will do a data cleaning for accurate analysis and predictions. The dataset is available in the public domain making it easier for researchers and analysts to use it and make recommendations to the relevant stakeholders. 
 
-The good thing about the dataset is that it is organized in a dataframe hence making it easier for analysis. 
+**Here we are trying to find tyhe solution for the given questions:**
 
-However, the dataset is not clean i.e there are unnecessary and null values in the data set that needs to be cleaned. Hence, we will do a data cleaning for accurate analysis and predictions. The dataset is available in the public domain making it easier for researchers and analysts to use it and make recommendations to the relevant stakeholders. 
-
-Here we are trying to find tyhe solution for the given questions:
-* Does the city make a difference in how much a population uses preventative services?
-* Can Cities Impact Healthy Behaviors? 
-* What can the city do to drive greater use of the services? 
+**-Does the city make a difference in how much a population uses preventative services?**
+**-Can Cities Impact Healthy Behaviors?**
+**-What can the city do to drive greater use of the services?**
 
 To answer the above questions, we will start looking at the data first and try to interpret the data using different statistical measures.
 
@@ -199,6 +196,7 @@ We have created tghe visualization of the populattion against the states. As you
 
 Now lets go back to our research questions.
 
+**RESEARCH QUESTION 1**
 ### Does the city make a difference in how much a population uses preventative services?
 The usage of preventative services and healthy behaviors are likely, the variables within the study that a city can directly influence, which may therefore impact health outcomes. To verify that theory, we'll start with preventative services, which include things like:
 * "Current lack of health insurance among adults aged 18–64 Years," (ACCESS2)
@@ -239,31 +237,33 @@ As you can see, there are variances between all of the preventative services, so
 The gap between cities in terms of access2, a measure of how much of a population lacks health insurance, can be as large as 4.50 percent of the population vs. 44.40 percent.
 Access2 has piqued my interest because it is the one that has the most difference between cities (albeit very narrowly), as well as for other reasons that will be detailed shortly. I'd like to learn more about its distribution:
 
-
-
-********
-```{r}
-ggplot(data = cities) +
-  geom_histogram(mapping = aes(x = access2), na.rm = TRUE) + 
+```
+library(ggpubr)
+plot_cities <-ggplot(data = cities) +
+  geom_histogram(mapping = aes(x = access2), na.rm = TRUE, binwidth = 2) + 
   labs(title = "Distribution of Lack of Health Insurance", x = "Population Lacking Health Insurance", y = "Cities Lacking Health Insurance")
-ggplot(data = cities) +
+
+box_cities <- ggplot(data = cities) +
   geom_boxplot(mapping = aes(y = access2), na.rm = TRUE) + 
   labs(title = "Distribution of Lack of Health Insurance", y = "Population Lacking Health Insurance")
+
+ggarrange(plot_cities, box_cities,  ncol = 2, nrow = 1)
 ```
-As you can see, there appear to be some outliers on the high end. Most hover between 10 and 20 percent, meaning that it is likely the client will have at least some room for improvement in this area
+![Bar_box_cities](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Box_bar_cities.png)
 
-**RESEARCH QUESTION TWO**
+As you can see, there appear to be some outliers on the high end. Most of the data lies between 10 and 20 percent, meaning that it is likely the client will have at least some options for improvement in this area
 
-## Can Cities Impact Healthy Behaviors?
-As previously stated, I will primarily consider obesity as a result rather than a behavior. As a result, I've identified four healthy behaviors that a city can influence:
+**RESEARCH QUESTION 2**
+### Can Cities Impact Healthy Behaviors?
+As previously stated, we will primarily consider obesity as a result rather than a behavior. As a result, we've identified four healthy behaviors that a city can influence:
 *"There is no leisure-time physical activity among persons over the age of 18" (LPA)
 * "Sleeping fewer than 7 hours in adults over the age of 18" (SLEEP)
 * "Binge drinking in adults over the age of 18" (BINGE)
 * "Adults above the age of 18 who are currently smoking" (CSMOKING)
-```{r}
-summary(select(cities, "csmoking", "sleep", "lpa", "binge"))
+
 ```
-```{r}
+summary(select(cities, "csmoking", "sleep", "lpa", "binge"))
+
 unhealthy_behavior <- summarize(cities, "csmoking" = max(csmoking)-min(csmoking), "sleep" = max(sleep)-min(sleep), 
                         "lpa" = max(lpa)-min(lpa), "binge" = max(binge)-min(binge))
 
@@ -273,25 +273,31 @@ ggplot(data = unhealthy_behavior) +
   geom_col(mapping = aes(x = reorder(measure, -value), y = value), fill = "red") +
   labs(title = "Difference Between Cities", x = "Unhealthy Behavior", y = "Size of Difference")
 ```
+![plot_unhealthy](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/plot_unhealthy.png)
+
 The disparity isn't as pronounced as it is in some of the poorest preventative services. The biggest disparity is in the lack of leisure-time physical exercise, which is 44.2 percent vs 12.60 percent. It's comparable, except the maximum and minimum values are significantly higher. It's odd, though, that different cities have such disparities in the percentages of people who engage in leisure-time physical activity.
 
-I take a closer look at the variable that makes the most difference once more.
+We will take a closer look at the variable that makes the most difference once more.
 
-```{r}
-ggplot(data = cities) +
-  geom_histogram(mapping = aes(x = lpa), na.rm = TRUE, bins = 35) + 
+```
+plot_phy <- ggplot(data = cities) +
+  geom_histogram(mapping = aes(x = lpa), na.rm = TRUE, binwidth = 2) + 
   labs(title = "Cities Without Leisurely Physical Activity", x = "Population Without Leisure Physical Activity", y = "Count of Cities")
-ggplot(data = cities) +
+
+box_phy <- ggplot(data = cities) +
   geom_boxplot(mapping = aes(y = lpa), na.rm = TRUE) + 
   labs(title = "Cities Without Leisurely Physical Activity", y = "Population Without Leisure Physical Activity")
+
+ggarrange(plot_phy, box_phy,  ncol = 2, nrow = 1)
 ```
-## Seeking Prevention
+![Boxplot_phy](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Boxplot_phy.png)
 
 Now that we've established that cities use preventative services differently, we need to figure out why. What can the city do to encourage more people to use the services?
 
-My initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, I believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
-I'm creating a correlation matrix followed by a heatmap. I'll be looking at the use of preventative services. I'll be interested in any correlations with an absolute value above .65.
-```{r}
+My initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, we believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
+WE will now create a correlation matrix followed by a heatmap. We will be looking at the use of preventative services and will be interested in any correlations with an absolute value above 0.65.
+
+```
 
 correlated_use <- census%>%
   drop_na() %>%
@@ -302,11 +308,12 @@ print(correlated_use)
 
 heatmap(correlated_use, main = "Correlations of Preventative Care", Colv = NA, Rowv = NA, margins = c(9, 9), scale = "none")
 ```
-The relationships between access2 and dental, corem, corew, cholscreen, and colon screen are among the more intriguing. Also visible are connections between corem and corew, as well as correlations with dental, cholscreen, and colon screen. Surprisingly, dental has a link to cholscreen and colon screen.
+![Heatmap_care](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Heatmap_care.png)
 
-I was surprised that there was no stronger link between access2 and checkup, or checkup and some of the other metrics.
-However, access2 has the strongest connection with the most variables. This doesn't strictly confirm my notion (I'd need additional data), but it does give it some credence as a possibility.
+From the heatmap, the relationships between access2 and dental, corem, corew, cholscreen, and colon screen are among the more intriguing. Also visible are connections between corem and corew, as well as correlations with dental, cholscreen, and colon screen. Surprisingly, dental has a link to cholscreen and colon screen.
 
+It is surprising that there was no stronger link between access2 and checkup, or checkup and some of the other metrics.
+However, access2 has the strongest connection with the most variables. This doesn't strictly confirm my notion (we would need additional data), but it does give it some credence as a possibility.
 
 
 **RESEARCH QUESTION 3**
@@ -326,15 +333,10 @@ the following outcomes were used
 "Taking medication to treat high blood pressure in persons over the age of 18 who have high blood pressure" (BPMED)
 "High cholesterol in persons over the age of 18 who have had a screening in the previous 5 years" (HIGHCHOL)
 
-```{r}
+```
 summary(select(cities, "phlth", "mhlth", "bphigh", "arthritis", "stroke", "obesity", "teethlost", "diabetes", "cancer", "copd", "chd", 
                "casthma", "kidney", "bpmed", "highchol"))
-
-```
-
-
-
-```{r}
+               
 ggplot(data = census) + 
   geom_smooth(mapping = aes(x = access2, y = phlth), method = 'gam', color = 'purple', na.rm = TRUE) +
   geom_smooth(mapping = aes(x = access2, y = mhlth), method = 'gam', color = 'blue', na.rm = TRUE) + 
@@ -343,45 +345,51 @@ ggplot(data = census) +
   annotate("text",x = 39, y = 21, label = "Poor Physical Health Over 14 Days", color = 'purple') + 
   annotate("text",x = 44, y = 15, label = "Poor Mental Health Over 14 Days", color = 'blue')
 ```
+![Plot_insure](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Plot_insure.png)
+
 As you can see, the number of people who have battled with physical health and mental health increases in cities as the number of people without health insurance rises. This is a fascinating result, especially since we've already seen that health insurance corresponds with the usage of other measurable preventative treatments. There may also be preventative services and treatments that were not measured but are nonetheless influenced by health insurance.
 
 We can look at the function of health insurance in high cholesterol and cholesterol testing as another, particularly intriguing example:
-```{r}
+
+```
 par(mfrow=c(2,2))
-ggplot(data = census) + 
+scatter_insure <- ggplot(data = census) + 
   geom_point(mapping = aes(x = cholscreen, y = highchol, color = access2), na.rm = TRUE) +
   labs(title = "The Impact of High Cholesterol on Cholesterol Screenings", x = "Cholesterol Screenings", 
        y = "Percent Population with High Cholesterol")
 
-ggplot(data = census) + 
+line_insure <- ggplot(data = census) + 
   geom_smooth(mapping = aes(x = access2, y = cholscreen), color = 'purple', na.rm = TRUE) +
   geom_smooth(mapping = aes(x = access2, y = highchol), color = 'blue', na.rm = TRUE)+
   labs(title = "The Impact of Insurance on High Cholesterol and Screenings", 
        x = "Percent of Population Without Health Insurance", y = "Percent with High Cholesterol or Screened") +
   annotate("text",x = 17, y = 80, label = "Cholesterol Screenings", color = 'purple') + 
   annotate("text",x = 50, y = 37, label = "High Cholesterol", color = 'blue')
+
+ggarrange(scatter_insure, line_insure, nrow = 1, ncol = 2)
 ```
+![scatter_insure](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/scatter_insure.png)
+
 As you can see, the greater the number of people who have high cholesterol, the more people who are screened for it. When health insurance is included in, however, we can see that people without health insurance are more likely to have high cholesterol and are less likely to be evaluated for it.
 
 Let's have a look at the overall correlations:
 
-
-```{r}
-
+```
 correlated_prevention <- census%>%
   drop_na() %>%
   select(access2, checkup, corem, corew, cholscreen, colon_screen, mammouse, 
          dental, phlth, mhlth, stroke, highchol, bphigh, bpmed, obesity, copd,
          diabetes, cancer, kidney, arthritis, chd, teethlost, casthma) %>%
   cor() 
-
-
+  
 print(correlated_prevention)
 
 heatmap(correlated_prevention, main = "Prevention and Outcomes", Colv = NA, Rowv = NA, margins = c(10, 10), scale = "none")
 
 ```
-Observations:
+![Heatmap_chol](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Heatmap_chol.png)
+
+**Observations:**
 
 Access2 has a link to phlth, mhlth, and teethlost, which was previously discovered to have a link to the utilization of preventative treatments.
 There is a link between checkup and bphigh and bpmed.
@@ -409,6 +417,10 @@ This analysis has a number of flaws, the most notable of which is the lack of da
 Missing values has an impact on the reliability of the results of the analysis. 
 
 
+## References:
+- [PLACES](https://www.cdc.gov/places/index.html)
+- Data Collected from:
+- Data Information
 
 
 
@@ -417,54 +429,3 @@ Missing values has an impact on the reliability of the results of the analysis.
 
 
 
-
-You can use the [editor on GitHub](https://github.com/Deepti1206/deepti1206.github.io/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-```sql
-
-SELECT 
-  *
-FROM 
-  TABLE
-
-```
-
-SELECT 
-  *
-FROM 
-  TABLE
-
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Deepti1206/deepti1206.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
