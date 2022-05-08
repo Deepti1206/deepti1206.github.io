@@ -50,15 +50,20 @@ As the data may contain missing values or unnecesarry features, we will follow t
 
 ## Descriptive analysis
 In order to perform the data pre-processing and analysis first step is to understand about your data.
+
 ```
 #Loading the dataset
 data_health<-read.csv("500_Cities__Local_Data_for_Better_Health__2019_release.csv",header=T)
 str(data_health)
 
 #the summary output
-![Summary data_health](/deepti1206.github.io/docs/images/Summary_data.png)
+![Summary data_health](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Summary_data.png)
+![Summary data_health] (/images/Summary_data.png)
 
 ```
+![Summary data_health](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Summary_data.png)
+![Summary data_health](/images/Summary_data.png)
+
 
 
 
@@ -89,6 +94,21 @@ Syntax highlighted code block
 
 [Link](url) and ![Image](src)
 ```
+
+```sql
+
+SELECT 
+  *
+FROM 
+  TABLE
+
+```
+
+SELECT 
+  *
+FROM 
+  TABLE
+
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
