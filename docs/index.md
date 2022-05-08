@@ -46,7 +46,7 @@ str(data_health)
 dim(data_health)
 ```
 The snapshot of output of the code `str(data_health)` is given in figure below. The entire output of the code can be found here [R markdown and link]
-![str data_health](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data_health).1.png)
+![str data_health]<img src = "https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data_health).1.png" aling = "center" width="950" height="300">
 
 In the output, you can see that there are 810,103 observations and 24 variables (i.e 810,103 rows and 24 columns in a dataframe). The structure of each variables are given. For example, for "StateAbbr", the datatype is "chr" (character) and displays a short list of observations under the variable.
 
