@@ -1,4 +1,3 @@
-*AIT Project*
 # City health services impact on public health in US
 *by Satwika Reddy Kondi and Deepti Vijay Khandagale*
 
