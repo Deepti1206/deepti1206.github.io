@@ -1,4 +1,10 @@
-# Health Services impact on Public Health
+*AIT Project*
+# City health services impact on public health in US
+*by Satwika Reddy Kondi and Deepti Vijay Khandagale*
+
+Health is the most impotant aspect of life. Focussing on the healthy lifestyle and maintaining a good health is a need. As
+
+## Background
 
 PLACES, the expansion of The 500 Cities Project, is a partnership project between the Center for Disease Control (CDC) and the Robert Wood Johnson. It focusses on new approaches towards model-based analysis of health estimates for local areas across the United States. For the first time, it supplied data for cities and census tracts, many of which covered multiple counties or did not follow county lines. These data can be filtered (by city and/or tracts, as well as by measure) and downloaded by end-users for use in different analyses. 
 
