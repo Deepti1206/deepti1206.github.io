@@ -32,8 +32,10 @@ url: "https://myeong.github.io" # the base hostname & protocol for your site, e.
 twitter_username: jekyllrb
 github_username:  jekyll
 
+
+# jekyll-theme-cayman
 # Build settings
-theme: jekyll-theme-cayman
+theme: minima
 plugins:
   - jekyll-feed
 
