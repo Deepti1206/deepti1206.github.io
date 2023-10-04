@@ -51,7 +51,7 @@ str(data_health)
 dim(data_health)
 ```
 The snapshot of output of the code `str(data_health)` is given in figure below. The entire output of the code can be found here [R markdown and link]
-![str data_health]<img src = "https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data_health).1.png" aling = "center" width="950" height="300">
+![str data_health]<img src = "https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data_health).1.png" aling = "center" width="950" height="300">
 
 In the output, you can see that there are 810,103 observations and 24 variables (i.e 810,103 rows and 24 columns in a dataframe). The structure of each variables are given. For example, for "StateAbbr", the datatype is "chr" (character) and displays a short list of observations under the variable.
 
@@ -66,8 +66,8 @@ After studying your data carefully and noted that datatype, dimension, structure
 colnames(data_health)
 skim_without_charts(data_health)
 ```
-![skim_1](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_1.png)
-![skim_2](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_2.png)
+![skim_1](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_1.png)
+![skim_2](https:/raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_2.png)
 Output code link
 
 The output tells us the n_missing values in the given data against each variables. We need to either fill this missing values or remove it, so that our model can fit into the data. 
@@ -90,7 +90,7 @@ Output link
 Now we have succesful removed the unncessary 16 colmuns which are mentioned in the code and in addition to that, we have renamed the column names for style guide purposes and now we will re-check the data sructure. The data is now reduced to the 810,103 observations and 8 variables and the column names have been changed.
 
 The snapshot of the summary of data is given below:
-![str data](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data).png)
+![str data](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data).png)
 
 Before moving ahead, it is necessary to know that the model cannot fit into the character datatype (i.e data which has categories) and hence we convert those datatypes into numerical values. After that we will check the statistical description.
 
@@ -106,7 +106,7 @@ skim_without_charts(data)
 summary(data)
 ```
 Output link
-![str data](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/summary_data.png)
+![str data](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/summary_data.png)
 
 After carefully studying the datam we will now begin building the dataframe which will give us a summary of type. To answer our research questions ,the variables which are likely to be used for study are preventive measures and healthy behaviors where the city can have direct influence, which may then impact the health outcomes. For this, we will carry out hypothesis testing and begin by looking at preventative services which consist of a number of outcomes.
 We will also use this dataset to predict if the measures taken by cities have a significant influence on the healthy behaviors within the population. Some of the variables that will help answer this question include: “No leisure-time physical activity among adults aged >=18 Years” (LPA) ”Sleeping less than 7 hours among adults aged >=18 Years” (SLEEP) “Binge drinking among adults aged >=18 Years” (BINGE) ”Current smoking among adults aged >=18 Years” (CSMOKING)
@@ -125,7 +125,7 @@ cities <- data %>%
 
 head(cities)
 ```
-![cities](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/cities.png)
+![cities](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/cities.png)
 
 ```
 census <- data %>%
@@ -141,11 +141,11 @@ head(census)
 skim_without_charts(census)
 ```
 Output link
-![skim_census](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/skim_census.png)
+![skim_census](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/skim_census.png)
 
 Looking at the above output, you will find that we have tried to look at disease types and the value at city level. We will now be able to look at the dimension, datatype and find out missing values in the census dataframe.
 
-![skim_census](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_census_2.png)
+![skim_census](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_census_2.png)
 
 If you see, the missing value in "PAPTEST" is hig and hence we will eliminate this column from our data. We will also rename the columns for better styling guide
  
@@ -191,7 +191,7 @@ print(states)
 
 ggplot(states, aes(x=reorder(state_abbr,population), y=population )) + geom_bar(stat = "identity") + theme(axis.text.x = element_text(angle = 90)) + scale_x_discrete("US States")
 ```
-![Barplot_states](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_states.png)
+![Barplot_states](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_states.png)
 
 We have created the visualization of the populattion against the states. As you can see, this data is skewed considerably in favor of a few states. For a variety of reasons, including culture, legislation, and weather, we can't assume that what works in California would work in Alaska. However, 11 states had only one city investigated, while California has 83. The accuracy of my findings could therefore be affected by the client's location. This happened because the study concentrated on the country's largest cities, then added a few more to guarantee that every state was covered. With this in mind, it's understood if you're concerned about how this would apply to a tiny town.
 
@@ -228,7 +228,7 @@ ggplot(data = difference) +
   geom_col(mapping = aes(x = reorder(measure, -value), y = value), fill = 'blue') +
   labs(title = "Difference Between Cities", x = "Preventative Service", y = "Size of Difference")
 ```
-![Barplot_states](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_data.png)
+![Barplot_states](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_data.png)
 
 ```
 maxmin_preventative <- cities %>%
@@ -252,7 +252,7 @@ box_cities <- ggplot(data = cities) +
 
 ggarrange(plot_cities, box_cities,  ncol = 2, nrow = 1)
 ```
-![Bar_box_cities](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Box_bar_cities.png)
+![Bar_box_cities](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Box_bar_cities.png)
 
 As you can see, there appear to be some outliers on the high end. Most of the data lies between 10 and 20 percent, meaning that it is likely the client will have at least some options for improvement in this area
 
@@ -276,7 +276,7 @@ ggplot(data = unhealthy_behavior) +
   geom_col(mapping = aes(x = reorder(measure, -value), y = value), fill = "red") +
   labs(title = "Difference Between Cities", x = "Unhealthy Behavior", y = "Size of Difference")
 ```
-![plot_unhealthy](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/plot_unhealthy.png)
+![plot_unhealthy](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/plot_unhealthy.png)
 
 The disparity isn't as pronounced as it is in some of the poorest preventative services. The biggest disparity is in the lack of leisure-time physical exercise, which is 44.2 percent vs 12.60 percent. It's comparable, except the maximum and minimum values are significantly higher. It's odd, though, that different cities have such disparities in the percentages of people who engage in leisure-time physical activity.
 
@@ -293,7 +293,7 @@ box_phy <- ggplot(data = cities) +
 
 ggarrange(plot_phy, box_phy,  ncol = 2, nrow = 1)
 ```
-![Boxplot_phy](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Boxplot_phy.png)
+![Boxplot_phy](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Boxplot_phy.png)
 
 Now that we've established that cities use preventative services differently, we need to figure out why. What can the city do to encourage more people to use the services?
 
@@ -348,7 +348,7 @@ ggplot(data = census) +
   annotate("text",x = 39, y = 21, label = "Poor Physical Health Over 14 Days", color = 'purple') + 
   annotate("text",x = 44, y = 15, label = "Poor Mental Health Over 14 Days", color = 'blue')
 ```
-![Plot_insure](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Plot_insure.png)
+![Plot_insure](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Plot_insure.png)
 
 As you can see, the number of people who have battled with physical health and mental health increases in cities as the number of people without health insurance rises. This is a fascinating result, especially since we've already seen that health insurance corresponds with the usage of other measurable preventative treatments. There may also be preventative services and treatments that were not measured but are nonetheless influenced by health insurance.
 
@@ -371,7 +371,7 @@ line_insure <- ggplot(data = census) +
 
 ggarrange(scatter_insure, line_insure, nrow = 1, ncol = 2)
 ```
-![scatter_insure](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/scatter_insure.png)
+![scatter_insure](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/scatter_insure.png)
 
 As you can see, the greater the number of people who have high cholesterol, the more people who are screened for it. When health insurance is included in, however, we can see that people without health insurance are more likely to have high cholesterol and are less likely to be evaluated for it.
 
@@ -390,7 +390,7 @@ print(correlated_prevention)
 heatmap(correlated_prevention, main = "Prevention and Outcomes", Colv = NA, Rowv = NA, margins = c(10, 10), scale = "none")
 
 ```
-![Heatmap_chol](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Heatmap_chol.png)
+![Heatmap_chol](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Heatmap_chol.png)
 
 **Observations:**
 
