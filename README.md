@@ -12,3 +12,9 @@ I am going to use health care data for cities and census tracts which is maintai
 1. Does the city make a difference in how much a population uses preventative services?
 2. Can Cities Impact Healthy Behaviors?
 3. Does the use of health services make any difference in the city?
+
+### Reference
+
+Data - 
+Images - 
+Codes - 
