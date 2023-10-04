@@ -311,7 +311,7 @@ print(correlated_use)
 
 heatmap(correlated_use, main = "Correlations of Preventative Care", Colv = NA, Rowv = NA, margins = c(9, 9), scale = "none")
 ```
-![Heatmap_care](https://github.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Heatmap_care.png)
+![Heatmap_chol](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/main/docs/images/Heatmap_chol.png)
 
 From the heatmap, the relationships between access2 and dental, corem, corew, cholscreen, and colon screen are among the more intriguing. Also visible are connections between corem and corew, as well as correlations with dental, cholscreen, and colon screen. Surprisingly, dental has a link to cholscreen and colon screen.
 
