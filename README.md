@@ -1,6 +1,6 @@
 # City health services impact on public health in US 
 
-[`Website Link`] (https://deepti1206.github.io/)
+[`Website Link`](https://deepti1206.github.io/)
 
 
 ### Goal
