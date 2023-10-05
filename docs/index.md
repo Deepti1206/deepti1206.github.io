@@ -1,7 +1,7 @@
 # City health services impact on public health in US
 *by Deepti Vijay Khandagale*
 
-Health is the most impotant aspect of life. Focussing on the healthy lifestyle and maintaining a good health is a need. As
+Health is the most impotant aspect of life. Recognizing health as a paramount aspect of life, this study emphasizes the significance of fostering a healthy lifestyle and maintaining robust public health measures to enhance the overall quality of life.
 
 ## Background
 
@@ -27,16 +27,16 @@ City planners and elected officials, for example, may have wished to utilize thi
 
 The good thing about the dataset is that it is organized in a dataframe hence making it easier for analysis. However, the dataset is not clean i.e there are unnecessary and null values in the data set that needs to be cleaned. Hence, we will do a data cleaning for accurate analysis and predictions. The dataset is available in the public domain making it easier for researchers and analysts to use it and make recommendations to the relevant stakeholders. 
 
-**Here we are trying to find tyhe solution for the given questions:**
+**Here I am trying to find the answer to some of my assumptions:**
 
 **-Does the city make a difference in how much a population uses preventative services?**
-**-Can Cities Impact Healthy Behaviors?**
-**-What can the city do to drive greater use of the services?**
+**-Does cities has any influence on changing the health behaviors of public?**
+**-What factors can city heath providers focus on to drive greater use of the services?**
 
-To answer the above questions, we will start looking at the data first and try to interpret the data using different statistical measures.
+To answer the above questions, it will be a good start to look at the data first and then try to interpret the data using different statistical measures.
 
 ## Methodology for descriptive analysis
-We will be using RStudio to analyze the dataset . The necessary R packages and libraries include: 
+For the analysis, I am going to use RStudio. The necessary R packages and libraries include: 
 ```
 library(ggplot2) #for visualization
 library(tidyverse) #for cleaning the dataset 
@@ -55,7 +55,7 @@ The snapshot of output of the code `str(data_health)` is given in figure below. 
 
 In the output, you can see that there are 810,103 observations and 24 variables (i.e 810,103 rows and 24 columns in a dataframe). The structure of each variables are given. For example, for "StateAbbr", the datatype is "chr" (character) and displays a short list of observations under the variable.
 
-After studying your data carefully and noted that datatype, dimension, structure of the data, it is neccessary to know if your data is clean. As the data may contain missing values or unnecesarry features, we will follow the data pre-processing which includes data cleaning and feature selection:
+After studying your data carefully and noted that datatype, dimension, structure of the data, it is neccessary to know if your data is clean. As the data may contain missing values or unnecesarry features, I will follow the data pre-processing which includes data cleaning and feature selection:
 
 * Removal of variables that are not necessary for analysis  
 * Removal of duplicates. 
@@ -70,7 +70,7 @@ skim_without_charts(data_health)
 ![skim_2](https:/raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_2.png)
 Output code link
 
-The output tells us the n_missing values in the given data against each variables. We need to either fill this missing values or remove it, so that our model can fit into the data. 
+The output tells us the n_missing values in the given data against each variables. I need to either fill this missing values or remove it, so that our model can fit into the data. 
 
 ```
 #Data Cleaning & Transformation
@@ -79,7 +79,7 @@ data <- select(data_health, -"StateDesc",-"DataSource", -"Data_Value_Unit", -"Da
                       -"Measure", -"GeoLocation", -"Short_Question_Text", -"Low_Confidence_Limit",-"High_Confidence_Limit", -"Data_Value_Footnote_Symbol", -"Data_Value_Footnote", -"Category", -"CategoryID", -"CityFIPS", -"Year")
 head(data)
 
-#Renaming to lowercase with underscores for style guide purposes. 
+#Renaming to loIrcase with underscores for style guide purposes. 
 data <- rename(data, geographic_level = GeographicLevel, state_abbr = StateAbbr, data_value_type = Data_Value_Type, tract_fips = TractFIPS, city_name = CityName,  measure_id = MeasureId, data_value = Data_Value, population_count = PopulationCount)
 
 colnames(data)
@@ -87,12 +87,12 @@ str(data)
 glimpse(data)
 ```
 Output link
-Now we have succesful removed the unncessary 16 colmuns which are mentioned in the code and in addition to that, we have renamed the column names for style guide purposes and now we will re-check the data sructure. The data is now reduced to the 810,103 observations and 8 variables and the column names have been changed.
+Now I have succesful removed the unncessary 16 colmuns which are mentioned in the code and in addition to that, I have renamed the column names for style guide purposes and now I will re-check the data sructure. The data is now reduced to the 810,103 observations and 8 variables and the column names have been changed.
 
 The snapshot of the summary of data is given below:
 ![str data](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/str(data).png)
 
-Before moving ahead, it is necessary to know that the model cannot fit into the character datatype (i.e data which has categories) and hence we convert those datatypes into numerical values. After that we will check the statistical description.
+Before moving ahead, it is necessary to know that the model cannot fit into the character datatype (i.e data which has categories) and hence I will convert those datatypes into numerical values. After that I will check the statistical description.
 
 ```
 #converting to numeric 
@@ -108,8 +108,8 @@ summary(data)
 Output link
 ![str data](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/summary_data.png)
 
-After carefully studying the datam we will now begin building the dataframe which will give us a summary of type. To answer our research questions ,the variables which are likely to be used for study are preventive measures and healthy behaviors where the city can have direct influence, which may then impact the health outcomes. For this, we will carry out hypothesis testing and begin by looking at preventative services which consist of a number of outcomes.
-We will also use this dataset to predict if the measures taken by cities have a significant influence on the healthy behaviors within the population. Some of the variables that will help answer this question include: “No leisure-time physical activity among adults aged >=18 Years” (LPA) ”Sleeping less than 7 hours among adults aged >=18 Years” (SLEEP) “Binge drinking among adults aged >=18 Years” (BINGE) ”Current smoking among adults aged >=18 Years” (CSMOKING)
+After carefully studying the data I will now begin building the dataframe which will give us a summary of type. To answer our research questions ,the variables which are likely to be used for study are preventive measures and healthy behaviors where the city can have direct influence, which may then impact the health outcomes. For this, I will carry out hypothesis testing and begin by looking at preventative services which consist of a number of outcomes.
+I will also use this dataset to predict if the measures taken by cities have a significant influence on the healthy behaviors within the population. Some of the variables that will help answer this question include: “No leisure-time physical activity among adults aged >=18 Years” (LPA) ”Sleeping less than 7 hours among adults aged >=18 Years” (SLEEP) “Binge drinking among adults aged >=18 Years” (BINGE) ”Current smoking among adults aged >=18 Years” (CSMOKING)
 
 ```
 library(tidyr)
@@ -143,11 +143,11 @@ skim_without_charts(census)
 Output link
 ![skim_census](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/skim_census.png)
 
-Looking at the above output, you will find that we have tried to look at disease types and the value at city level. We will now be able to look at the dimension, datatype and find out missing values in the census dataframe.
+Looking at the above output, you will find that I have tried to look at disease types and the value at city level. I will now be able to look at the dimension, datatype and find out missing values in the census dataframe.
 
 ![skim_census](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Skim_census_2.png)
 
-If you see, the missing value in "PAPTEST" is hig and hence we will eliminate this column from our data. We will also rename the columns for better styling guide
+If you see, the missing value in "PAPTEST" is hig and hence I will eliminate this column from our data. I will also rename the columns for better styling guide
  
  ```
 #Removing Paptest
@@ -175,7 +175,7 @@ census <- rename(census, stroke = STROKE, highchol = HIGHCHOL, bphigh = BPHIGH,
                              teethlost = TEETHLOST, casthma = CASTHMA, mammouse = MAMMOUSE)
 
 ```
-It is important to look if the data is  bias. We will do that by visualizing the city level data
+It is important to look if the data is  bias. I will do that by visualizing the city level data
 ```
 str(census)
 census$population_count= as.numeric(census$population_count)
@@ -193,7 +193,7 @@ ggplot(states, aes(x=reorder(state_abbr,population), y=population )) + geom_bar(
 ```
 ![Barplot_states](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Barplot_states.png)
 
-We have created the visualization of the populattion against the states. As you can see, this data is skewed considerably in favor of a few states. For a variety of reasons, including culture, legislation, and weather, we can't assume that what works in California would work in Alaska. However, 11 states had only one city investigated, while California has 83. The accuracy of my findings could therefore be affected by the client's location. This happened because the study concentrated on the country's largest cities, then added a few more to guarantee that every state was covered. With this in mind, it's understood if you're concerned about how this would apply to a tiny town.
+I have created the visualization of the populattion against the states. As you can see, this data is skeId considerably in favor of a few states. For a variety of reasons, including culture, legislation, and weather, I can't assume that what works in California would work in Alaska. However, 11 states had only one city investigated, while California has 83. The accuracy of my findings could therefore be affected by the client's location. This happened because the study concentrated on the country's largest cities, then added a few more to guarantee that every state was covered. With this in mind, it's understood if you're concerned about how this would apply to a tiny town.
 
 ## Results and findings
 
@@ -201,7 +201,7 @@ Now lets go back to our research questions.
 
 **RESEARCH QUESTION 1**
 ### Does the city make a difference in how much a population uses preventative services?
-The usage of preventative services and healthy behaviors are likely, the variables within the study that a city can directly influence, which may therefore impact health outcomes. To verify that theory, we'll start with preventative services, which include things like:
+The usage of preventative services and healthy behaviors are likely, the variables within the study that a city can directly influence, which may therefore impact health outcomes. To verify that theory, I'll start with preventative services, which include things like:
 * "Current lack of health insurance among adults aged 18–64 Years," (ACCESS2)
 * "Visits to doctor for routine checkup within the past Year among adults aged >=18 Years," (CHECKUP)
 * Fecal occult blood test, sigmoidoscopy, or colonoscopy among adults aged 50–75 Years," (COLON_SCREEN)
@@ -258,7 +258,7 @@ As you can see, there appear to be some outliers on the high end. Most of the da
 
 **RESEARCH QUESTION 2**
 ### Can Cities Impact Healthy Behaviors?
-As previously stated, we will primarily consider obesity as a result rather than a behavior. As a result, we've identified four healthy behaviors that a city can influence:
+As previously stated, I will primarily consider obesity as a result rather than a behavior. As a result, I've identified four healthy behaviors that a city can influence:
 *"There is no leisure-time physical activity among persons over the age of 18" (LPA)
 * "Sleeping fewer than 7 hours in adults over the age of 18" (SLEEP)
 * "Binge drinking in adults over the age of 18" (BINGE)
@@ -280,7 +280,7 @@ ggplot(data = unhealthy_behavior) +
 
 The disparity isn't as pronounced as it is in some of the poorest preventative services. The biggest disparity is in the lack of leisure-time physical exercise, which is 44.2 percent vs 12.60 percent. It's comparable, except the maximum and minimum values are significantly higher. It's odd, though, that different cities have such disparities in the percentages of people who engage in leisure-time physical activity.
 
-We will take a closer look at the variable that makes the most difference once more.
+I will take a closer look at the variable that makes the most difference once more.
 
 ```
 plot_phy <- ggplot(data = cities) +
@@ -295,10 +295,10 @@ ggarrange(plot_phy, box_phy,  ncol = 2, nrow = 1)
 ```
 ![Boxplot_phy](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Boxplot_phy.png)
 
-Now that we've established that cities use preventative services differently, we need to figure out why. What can the city do to encourage more people to use the services?
+Now that I've established that cities use preventative services differently, I need to figure out why. What can the city do to encourage more people to use the services?
 
-The initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, we believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
-WE will now create a correlation matrix followed by a heatmap. We will be looking at the use of preventative services and will be interested in any correlations with an absolute value above 0.65.
+The initial hypothesis is based on the inclusion of access2, which is the percentage of the population that are uninsured. As the name implies, I believe this can tell us whether a population is not getting preventative care because they do not have insurance, making the services unaffordable. If this is the case, the small city could make a difference in the usage of preventative treatments by assisting their citizens in becoming insured or ensuring that the services are available in an accessible and affordable manner.
+I will now create a correlation matrix followed by a heatmap. I will be looking at the use of preventative services and will be interested in any correlations with an absolute value above 0.65.
 
 ```
 
@@ -323,7 +323,7 @@ However, access2 has the strongest connection with the most variables. This does
 
 ## Does the use of health services make any Difference in the city?
 The second consideration is whether or not using these services is beneficial. The client's purpose isn't to force residents to use its preventative services. Its goal is to improve the residents' health. Use of preventative services may be one of the areas where cities may make the most difference, but does their use have an impact on the city's health?
-the following outcomes were used
+the following outcomes Ire used
 "Stroke in people over the age of 18" (STROKE)
 "Obesity in people beyond the age of 18" (OBESITY)
 "All teeth are lost in adults over the age of 65." (TEETHLOST)
@@ -350,9 +350,9 @@ ggplot(data = census) +
 ```
 ![Plot_insure](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/Plot_insure.png)
 
-As you can see, the number of people who have battled with physical health and mental health increases in cities as the number of people without health insurance rises. This is a fascinating result, especially since we've already seen that health insurance corresponds with the usage of other measurable preventative treatments. There may also be preventative services and treatments that were not measured but are nonetheless influenced by health insurance.
+As you can see, the number of people who have battled with physical health and mental health increases in cities as the number of people without health insurance rises. This is a fascinating result, especially since I've already seen that health insurance corresponds with the usage of other measurable preventative treatments. There may also be preventative services and treatments that were not measured but are nonetheless influenced by health insurance.
 
-We can look at the function of health insurance in high cholesterol and cholesterol testing as another, particularly intriguing example:
+I can look at the function of health insurance in high cholesterol and cholesterol testing as another, particularly intriguing example:
 
 ```
 par(mfrow=c(2,2))
@@ -373,7 +373,7 @@ ggarrange(scatter_insure, line_insure, nrow = 1, ncol = 2)
 ```
 ![scatter_insure](https://raw.githubusercontent.com/Deepti1206/deepti1206.github.io/blob/main/docs/images/scatter_insure.png)
 
-As you can see, the greater the number of people who have high cholesterol, the more people who are screened for it. When health insurance is included in, however, we can see that people without health insurance are more likely to have high cholesterol and are less likely to be evaluated for it.
+As you can see, the greater the number of people who have high cholesterol, the more people who are screened for it. When health insurance is included in, however, I can see that people without health insurance are more likely to have high cholesterol and are less likely to be evaluated for it.
 
 Let's have a look at the overall correlations:
 
