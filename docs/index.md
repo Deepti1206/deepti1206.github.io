@@ -1,5 +1,5 @@
 # City health services impact on public health in US
-*by Satwika Reddy Kondi and Deepti Vijay Khandagale*
+*by Deepti Vijay Khandagale*
 
 Health is the most impotant aspect of life. Focussing on the healthy lifestyle and maintaining a good health is a need. As
 
