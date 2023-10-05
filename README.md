@@ -5,7 +5,7 @@ Link - https://deepti1206.github.io/
 ### Goal
 The aim of this project is to identify metrics and measures in the cities that predict the public health outcomes and can help to take preventive measures against the disease.
 
-### Methodology
+### Research Questions
 
 I am going to use health care data for cities and census tracts which is maintained by PLACES. PLACES is a partnership project with Center for Disease Control (CDC). In order to achieve the goal, I have developed a set of questions based on my hypothesis. The intend is to analyze and visualize data for each of these questions. The questions are as follows:
 
@@ -13,8 +13,9 @@ I am going to use health care data for cities and census tracts which is maintai
 2. Can Cities Impact Healthy Behaviors?
 3. Does the use of health services make any difference in the city?
 
+
 ### Reference
 
 - Data - Docs/500_Cities__Local_Data_for_Better_Health__2019_release.rar
-- Images - Docs/
-- Codes - 
+- Images - Docs/Images
+- Codes - Docs/index.md
