@@ -1,6 +1,7 @@
-# City health services impact on public health in US
+# City health services impact on public health in US 
 
-Link - https://deepti1206.github.io/
+[`Website Link`] (https://deepti1206.github.io/)
+
 
 ### Goal
 The aim of this project is to identify metrics and measures in the cities that predict the public health outcomes and can help to take preventive measures against the disease.
